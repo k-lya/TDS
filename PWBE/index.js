@@ -1,11 +1,13 @@
 const express = require("express");
-const router = require("./router");
+const router = require("./routers/router.js");
 const app = express();
 const port = 3000;
 
 app.use('/', router);
 app.set("views", "views");
 app.set("view engine", "ejs");
+
+app.use(express.static('public'))
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -87,7 +89,7 @@ app.get("/historico_aluno", (req, res) => {
 });
 
 app.get("/novo_registro", (req, res) => {
-  res.render("novo_registro");
+  res.render("novo_registro", lista_novo_registro);
 });
 
 app.post("/novo_registro", (req, res) => {
